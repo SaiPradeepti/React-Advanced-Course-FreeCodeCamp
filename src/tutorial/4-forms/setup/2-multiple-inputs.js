@@ -61,7 +61,16 @@ const ControlledInputs = () => {
           </div>
           <button type='submit' onClick={handleSubmit}>add person</button>
         </form>
-        
+        {people.map((person) => {
+          const { id, firstName, email, age } = person;
+          return (
+            <div className='item' key={id}>
+              <h4>{firstName}</h4>
+              <p>{age}</p>
+              <p>{email}</p>
+            </div>
+          );
+        })}
       </article>
     </>
   );
