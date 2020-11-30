@@ -8,9 +8,19 @@ import React, { useState } from 'react';
 const ControlledInputs = () => {
   const [firstName,setFirstName] = useState('');
   const [email,setEmail] = useState('');
+  const [people,setPeople] = useState([]);
 
   const handleSubmit = (e) =>{
-    console.log(firstName,email);
+    if(firstName && email){
+      const person = {id: new Date().getTime().toString(),firstName,email};
+      setPeople((people) => {
+        return [...people,person];
+      });
+      setFirstName('');
+      setEmail('');
+    }else{
+      console.log('empty values');
+    }
     e.preventDefault();   
   }
   // to handle forms place function on form or submit button
@@ -31,6 +41,17 @@ const ControlledInputs = () => {
           {/* <button className="btn" onClick={handleSubmit}>Add Person</button> */}
           <button className="btn">Add Person</button>
         </form>
+        {
+          people.map((person) =>{
+            const {id,firstName,email} = person;
+            return (
+            <div className="item" key={id}>
+              <h4>{firstName}</h4>
+              <p>{email}</p>
+            </div>
+            );
+          })
+        }
       </article>   
     </>
   );
