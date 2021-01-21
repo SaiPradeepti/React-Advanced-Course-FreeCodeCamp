@@ -3,7 +3,6 @@ import Modal from './Modal';
 import { data } from '../../../data';
 // reducer function
 const reducer = (state,action) => {
-  console.log(state);
   
   switch(action.type){
     case ACTIONS.ADD_ITEM:
@@ -20,13 +19,19 @@ const reducer = (state,action) => {
         isModalOpen: true,
         modalContent: "please enter value"
       }
+    case ACTIONS.CLOSE_MODAL:
+      return {
+        ...state,
+        isModalOpen: false
+      }
     default:
       throw new Error('No matching action type');
   }
 }
 const ACTIONS = {
   ADD_ITEM: 'add_item',
-  NO_VALUE: 'no_value'
+  NO_VALUE: 'no_value',
+  CLOSE_MODAL: 'close_modal'
 }
 const defaultState = {
   people: '',
@@ -50,13 +55,17 @@ const Index = () => {
     }
   }
 
+  const closeModal = () => {
+    dispatch({type: ACTIONS.CLOSE_MODAL});
+  }
+
   useEffect(()=>{
     inputRef.current.focus();
   },[]);
   
   return (
     <>
-      {state.isModalOpen && <Modal modalContent={state.modalContent} />}
+      {state.isModalOpen && <Modal modalContent={state.modalContent} closeModal={closeModal} />}
       <form onSubmit={handleSubmit} className="form">
         <div>
           <input type="text" value={name} onChange={(e)=>setName(e.target.value)} ref={inputRef}/>
