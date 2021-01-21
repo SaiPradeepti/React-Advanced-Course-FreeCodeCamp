@@ -4,7 +4,7 @@ import { data } from '../../../data';
 // reducer function
 import {reducer} from './reducer'
 
-const ACTIONS = {
+export const ACTIONS = {
   ADD_ITEM: 'add_item',
   NO_VALUE: 'no_value',
   CLOSE_MODAL: 'close_modal',

@@ -1,3 +1,5 @@
+import { ACTIONS } from './index'
+
 export const reducer = (state,action) => {  
   switch(action.type){
     case ACTIONS.ADD_ITEM:
