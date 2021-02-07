@@ -11,7 +11,7 @@ export const ACTIONS = {
   REMOVE_ITEM: 'remove_item'
 }
 const defaultState = {
-  people: '',
+  people: [],
   isModalOpen: false,
   modalContent: ''
 }
